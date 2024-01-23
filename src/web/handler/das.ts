@@ -1,9 +1,9 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import { IDasGateway } from "../../messaging/gateway/das";
 import { Mei } from "../../model/mei";
 
 interface IDasHandler {
-  sendDas(req: Request, res: Response, next: NextFunction): void;
+  sendDas(req: Request, res: Response): void;
 }
 
 class DasHandler implements IDasHandler {
@@ -11,14 +11,10 @@ class DasHandler implements IDasHandler {
     this.sendDas = this.sendDas.bind(this);
   }
 
-  async sendDas(req: Request, res: Response, next: NextFunction) {
-    try {
-      const { cnpj, email } = req.body;
-      const mei = new Mei(cnpj, email);
-      await this.gateway.sendDas(mei);
-    } catch(e) {
-      return next(e);
-    }
+  async sendDas(req: Request, res: Response) {
+    const { cnpj, email } = req.body;
+    const mei = new Mei(cnpj, email);
+    await this.gateway.sendDas(mei);
     
     return res.status(200).end();
   }
