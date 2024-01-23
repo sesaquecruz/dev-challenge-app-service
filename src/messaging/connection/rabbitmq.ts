@@ -31,8 +31,9 @@ class RabbitMq implements IRabbitMqInitializer, IRabbitMq {
       this.channel = await this.connection.createChannel();
       this.connection.on("close", this.onConnectionClose);
       this.channel.on("close", this.onChannelClose);
+      console.log("Connected to RabbitMQ");
     } catch(e) {
-      console.log("Failed to init RabbitMQ connection", e);
+      console.log("Failed to connect to RabbitMQ:", e);
       this.onConnectionClose();
     }
   }
