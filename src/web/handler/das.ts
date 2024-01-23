@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { IDasGateway } from "../../gateway/das";
+import { IDasGateway } from "../../messaging/gateway/das";
 import { Mei } from "../../model/mei";
 
 interface IDasHandler {
