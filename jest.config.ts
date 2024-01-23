@@ -1,9 +1,11 @@
-import type {Config} from "jest";
+import type { Config } from "@jest/types";
 
-const config: Config = {
+const config: Config.InitialOptions = {
+  preset: "ts-jest",
+  testEnvironment: "node",
   clearMocks: true,
   coverageProvider: "v8",
-  rootDir: "src",
+  roots: ["<rootDir>/src"],
 };
 
 export default config;
