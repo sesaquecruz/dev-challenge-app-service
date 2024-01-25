@@ -7,7 +7,7 @@ interface IDasGateway {
 
 class DasGateway implements IDasGateway {
   constructor(
-    private readonly rabbitmq: IRabbitMq,
+    private readonly rabbitMq: IRabbitMq,
     private readonly exchange: string,
     private readonly routingKey: string,
   ) {
@@ -15,7 +15,7 @@ class DasGateway implements IDasGateway {
   }
 
 	async sendDas(mei: Mei): Promise<void> {
-    const channel = await this.rabbitmq.getChannel();
+    const channel = await this.rabbitMq.getChannel();
     channel.publish(this.exchange, this.routingKey, Buffer.from(JSON.stringify(mei)));
     return Promise.resolve();
   }
