@@ -1,17 +1,20 @@
 import { ValidationError } from "../error/validation";
+import { Das } from "./das";
 import { Mei } from "./mei";
 
 describe("test MEI creation", () => {
+  const das = new Das(2024, 1);
+
   it("with valid values", () => {
     const cnpjFormatted = "85.443.315/0001-66";
     const cnpjOnlyDigits = "85443315000166";
     const email = "user@mail.com";
 
-    let mei = new Mei(cnpjFormatted, email);
+    let mei = new Mei(cnpjFormatted, email, das);
     expect(mei.cnpj).toBe(cnpjOnlyDigits);
     expect(mei.email).toBe(email);
 
-    mei = new Mei(cnpjOnlyDigits, email);
+    mei = new Mei(cnpjOnlyDigits, email, das);
     expect(mei.cnpj).toBe(cnpjOnlyDigits);
     expect(mei.email).toBe(email);
   });
@@ -20,7 +23,7 @@ describe("test MEI creation", () => {
     const cnpj = "  85443315000166   ";
     const email = " user@mail.com  ";
 
-    const mei = new Mei(cnpj, email);
+    const mei = new Mei(cnpj, email, das);
     expect(mei.cnpj).toBe(cnpj.trim());
     expect(mei.email).toBe(email.trim());
   });
@@ -34,7 +37,7 @@ describe("test MEI creation", () => {
 
     const expectErrors = (cnpj: string, email: string, errors: string[]) => {
       try {
-        new Mei(cnpj, email);
+        new Mei(cnpj, email, das);
       } catch (error) {
         expect(error).toBeInstanceOf(ValidationError);  
         expect((error as ValidationError).errors).toEqual(errors);

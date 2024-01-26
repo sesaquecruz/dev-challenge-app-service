@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "MEI API",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "API para o envio de DAS para MEIs."
   },
   "tags": [
@@ -75,9 +75,17 @@
           "email": {
             "type": "string",
             "description": "Email do MEI."
+          },
+          "year": {
+            "type": "number",
+            "description": "Ano da DAS."
+          },
+          "month": {
+            "type": "number",
+            "description": "Mês da DAS."
           }
         },
-        "required": ["cnpj", "email"]
+        "required": ["cnpj", "email", "year", "month"]
       },
       "HttpError": {
         "type": "object",
