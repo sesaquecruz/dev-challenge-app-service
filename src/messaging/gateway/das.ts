@@ -1,8 +1,8 @@
-import { Mei } from "../../model/mei";
 import { IRabbitMq } from "../connection/rabbitmq";
+import { DasEvent } from "../events/das";
 
 interface IDasGateway {
-	sendDas(mei: Mei): Promise<void>;
+	send(event: DasEvent): Promise<void>;
 }
 
 class DasGateway implements IDasGateway {
@@ -11,12 +11,12 @@ class DasGateway implements IDasGateway {
     private readonly exchange: string,
     private readonly routingKey: string,
   ) {
-    this.sendDas = this.sendDas.bind(this);
+    this.send = this.send.bind(this);
   }
 
-	async sendDas(mei: Mei): Promise<void> {
+	async send(event: DasEvent): Promise<void> {
     const channel = await this.rabbitMq.getChannel();
-    channel.publish(this.exchange, this.routingKey, Buffer.from(JSON.stringify(mei)));
+    channel.publish(this.exchange, this.routingKey, Buffer.from(JSON.stringify(event)));
     return Promise.resolve();
   }
 }

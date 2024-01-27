@@ -1,14 +1,12 @@
 import { ValidationError } from "../error/validation";
 import { getOnlyCnpjDigits } from "../utils/formatations";
 import { isValidCnpj, isValidEmail } from "../utils/validations";
-import { Das } from "./das";
 
 class Mei {
   readonly cnpj: string;
   readonly email: string;
-  readonly das: Das;
 
-	constructor(cnpj: string, email: string, das: Das) {
+	constructor(cnpj: string, email: string) {
     cnpj = getOnlyCnpjDigits(cnpj.trim());
     email = email.trim();
     
@@ -28,7 +26,6 @@ class Mei {
 
     this.cnpj = cnpj;
     this.email = email;
-    this.das = das;
   }
 }
 

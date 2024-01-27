@@ -1,6 +1,17 @@
 class ValidationError extends Error {
-  constructor(readonly errors: string[]) {
+  readonly errors: string[];
+
+  constructor(errors: string[]) {
     super();
+    this.errors = errors;
+  }
+
+  appendError(error: ValidationError) {
+    this.errors.push(...error.errors);
+  }
+
+  hasError(): boolean {
+    return this.errors.length > 0;
   }
 }
 
