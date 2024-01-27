@@ -1,20 +1,24 @@
 # App Service - Dev Challenge
 
-This project is a part of the solution for the Dev Challenge that consists in the creation of a system that allows MEIs to receive their DAS directly by email.
+This project is part of a solution for a Dev Challenge that consists creating a system to allow MEIs to receive their DAS directly by email.
 
-The entire solution consists of the following systems:
+The entire solution systems are:
  
-- App Service: It provides a REST API to receive the MEI's CNPJ and email, along with the year and month of a DAS. Subsequently, it forwards this data to the Scraper Service via RabbitMQ
-- [Scraper Service](https://github.com/sesaquecruz/dev-challenge-scraper-service): It retrieves the data from RabbitMQ, scrapes the requested DAS from the PGMEI site, and then sends it to the email of the MEI.
+- App Service: Provides a REST API to receive MEI and DAS information. The received data is then forwarded to the Scraper Service through RabbitMQ."
+- [Scraper Service](https://github.com/sesaquecruz/dev-challenge-scraper-service): Retrieves the data from RabbitMQ, scrapes the DAS from the PGMEI site, and then sends it by email.
+
+<p align="center">
+  <img src="./diagram.svg" />
+</p>
 
 ## API
 
 ### Endpoints
 
-| Endpoint       | Method | Description                    |
-|----------------|--------|--------------------------------|
-| `/api/v1/das`  | POST   | Request the sending of the DAS |
-| `/api/v1/docs` | GET    | API's documentation            |
+| Endpoint       | Method | Description         |
+|----------------|--------|---------------------|
+| `/api/v1/das`  | POST   | Request a DAS       |
+| `/api/v1/docs` | GET    | API's documentation |
 
 ### Data Format
 
@@ -29,7 +33,7 @@ The entire solution consists of the following systems:
 }
 ```
 
-The CNPJ can be passed in both formats `66.516.671/0001-18` or `66516671000118`.
+The CNPJ can be passed in either of the following formats: `66.516.671/0001-18` or `66516671000118`.
 
 ## Installation
 
@@ -45,13 +49,13 @@ git clone https://github.com/sesaquecruz/dev-challenge-app-service
 cd dev-challenge-app-service
 ```
 
-3. Run the docker compose to start the infrastructure:
+3. Run the docker compose to start the infrastructure services:
 
 ```
 docker compose --profile infra up -d
 ```
 
-4. Run the docker compose to start the application:
+4. Run the docker compose to start the application service:
 
 ```
 docker compose --profile prod up -d --build
