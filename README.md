@@ -29,7 +29,7 @@ The entire solution consists of the following systems:
 }
 ```
 
-The cnpj can be passed in both formats `66.516.671/0001-18` or `66516671000118`.
+The CNPJ can be passed in both formats `66.516.671/0001-18` or `66516671000118`.
 
 ## Installation
 
@@ -56,6 +56,8 @@ docker compose --profile infra up -d
 ```
 docker compose --profile prod up -d --build
 ```
+
+To stop all services, run: `docker compose --profile infra --profile prod down`.
 
 ## Usage
 
