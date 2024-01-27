@@ -1,7 +1,7 @@
 import { Das } from "./das";
 import { ValidationError } from "../error/validation";
 
-describe("with valid values", () => {
+describe("test Das creation", () => {
   describe("with valid values", () => {
     const year = 2000;
     const month = 1;
@@ -42,7 +42,7 @@ describe("with valid values", () => {
         expect((error as ValidationError).errors).toEqual(errors);
         return;
       }
-      throw new Error("das creating did not throw an error");
+      throw new Error("Das creating did not throw an error");
     };
 
     expectErrors(yearInvalid, monthValid, ["year is invalid"]);

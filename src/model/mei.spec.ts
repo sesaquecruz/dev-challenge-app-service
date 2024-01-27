@@ -40,7 +40,7 @@ describe("test MEI creation", () => {
         expect((error as ValidationError).errors).toEqual(errors);
         return;
       }
-      throw new Error("mei creating did not throw an error");
+      throw new Error("Mei creating did not throw an error");
     };
     
     expectErrors(cnpjInvalid, emailValid, ["cnpj is invalid"]);
