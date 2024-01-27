@@ -1,0 +1,108 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "MEI API",
+    "version": "2.0.0",
+    "description": "API para o envio de DAS para MEIs."
+  },
+  "tags": [
+    {
+      "name": "DAS"
+    }
+  ],
+  "paths": {
+    "/api/v1/das": {
+      "post": {
+        "summary": "Envia para o email a última guia do DAS MEI do CNPJ informado.",
+        "tags": ["DAS"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MEI"
+              }
+            }
+          }
+        },
+        "responses": {
+            "200": {
+              "description": "Success"
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HttpError"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HttpError"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HttpError"
+                  }
+                }
+              }
+            }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "MEI": {
+        "type": "object",
+        "properties": {
+          "cnpj": {
+            "type": "string",
+            "description": "CNPJ do MEI."
+          },
+          "email": {
+            "type": "string",
+            "description": "Email do MEI."
+          },
+          "year": {
+            "type": "number",
+            "description": "Ano da DAS."
+          },
+          "month": {
+            "type": "number",
+            "description": "Mês da DAS."
+          }
+        },
+        "required": ["cnpj", "email", "year", "month"]
+      },
+      "HttpError": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "Código http do error."
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Messages de error."
+          }
+        }
+      }
+    }
+  }
+}
