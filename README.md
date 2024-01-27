@@ -8,7 +8,7 @@ The entire solution systems are:
 - [Scraper Service](https://github.com/sesaquecruz/dev-challenge-scraper-service): Retrieves the data from RabbitMQ, scrapes the DAS from the PGMEI site, and then sends it by email.
 
 <p align="center">
-  <img src="diagram.svg" alt="Project Diagram" style="width:50%;">
+  <img src="./diagram.png" alt="Project Diagram" style="width:50%;">
 </p>
 
 ## API
