@@ -4,7 +4,7 @@ This project is part of a solution for a Dev Challenge that consists creating a 
 
 The entire solution systems are:
  
-- App Service: Provides a REST API to receive MEI and DAS information. The received data is then forwarded to the Scraper Service through RabbitMQ."
+- App Service: Provides a REST API to receive MEI and DAS information. The received data is then forwarded to the Scraper Service through RabbitMQ.
 - [Scraper Service](https://github.com/sesaquecruz/dev-challenge-scraper-service): Retrieves the data from RabbitMQ, scrapes the DAS from the PGMEI site, and then sends it by email.
 
 ## Diagram
