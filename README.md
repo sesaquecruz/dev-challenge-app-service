@@ -1,11 +1,11 @@
 # App Service - Dev Challenge
 
-This project is part of a solution for a Dev Challenge that consists creating a system to allow MEIs to receive their DAS directly by email.
+This project is part of a solution for a Dev Challenge that consists of creating a system to allow MEIs to receive their DAS directly by email.
 
-The entire solution systems are:
+The entire solution systems include:  
  
-- App Service: Provides a REST API to receive MEI and DAS information. The received data is then forwarded to the Scraper Service through RabbitMQ.
-- [Scraper Service](https://github.com/sesaquecruz/dev-challenge-scraper-service): Retrieves the data from RabbitMQ, scrapes the DAS from the PGMEI site, and then sends it by email.
+- **App Service**: Provides a REST API to receive MEI and DAS information. The received data is then forwarded to the Scraper Service through RabbitMQ.
+- [**Scraper Service**](https://github.com/sesaquecruz/dev-challenge-scraper-service): Retrieves the data from RabbitMQ, scrapes the DAS from the PGMEI site, and then sends it by email.
 
 ## Diagram
 
